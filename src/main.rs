@@ -6,6 +6,7 @@ fn main() {
     for stream in listener.incoming() {
         match stream {
             Ok(_stream) => {
+                _stream.write_all(b"Hello World!");
                 println!("accepted new connection");
             }
             Err(e) => {
