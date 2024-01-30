@@ -1,3 +1,4 @@
+use std::io::Write; // Add this line
 use std::net::TcpListener;
 
 fn main() {
@@ -5,8 +6,9 @@ fn main() {
 
     for stream in listener.incoming() {
         match stream {
-            Ok(_stream) => {
-                _stream.write_all(b"Hello World!");
+            Ok(mut _stream) => {
+                // _stream needs to be mutable to write to it
+                _stream.write_all(b"Hello World!").unwrap();
                 println!("accepted new connection");
             }
             Err(e) => {
